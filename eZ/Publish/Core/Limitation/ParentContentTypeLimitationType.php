@@ -133,7 +133,7 @@ class ParentContentTypeLimitationType extends AbstractPersistenceLimitationType 
         // Try to load locations if no targets were provided
         if (empty($targets)) {
             if ($object->published) {
-                $targets = $this->persistence->locationHandler()->loadLocationsByContent($object->id);
+                $targets = $this->loadParentLocations($object);
             } else {
                 // @todo Need support for draft locations to to work correctly
                 $targets = $this->persistence->locationHandler()->loadParentLocationsForDraftContent($object->id);
@@ -233,5 +233,21 @@ class ParentContentTypeLimitationType extends AbstractPersistenceLimitationType 
     public function valueSchema()
     {
         throw new \eZ\Publish\API\Repository\Exceptions\NotImplementedException(__METHOD__);
+    }
+
+    /**
+     * @param ValueObject $contentInfo
+     * @return Location[]
+     * @throws APINotFoundException
+     */
+    private function loadParentLocations(ValueObject $contentInfo): array
+    {
+        $locations = $this->persistence->locationHandler()->loadLocationsByContent($contentInfo->id);
+        $parentLocations = [];
+        foreach ($locations as $location) {
+            $parentLocations[] = $this->persistence->locationHandler()->load($location->parentId);
+        }
+
+        return $parentLocations;
     }
 }
