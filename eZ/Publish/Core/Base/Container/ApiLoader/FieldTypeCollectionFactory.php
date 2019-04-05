@@ -38,6 +38,8 @@ class FieldTypeCollectionFactory implements ContainerAwareInterface
      */
     public function registerFieldType($fieldTypeServiceId, $fieldTypeAlias)
     {
+        echo 'REGISTER FIELDTYPE '.$fieldTypeAlias."\n\n";
+
         $container = $this->container;
         $this->fieldTypes[$fieldTypeAlias] = function () use ($container, $fieldTypeServiceId) {
             return $container->get($fieldTypeServiceId);

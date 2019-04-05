@@ -28,6 +28,7 @@ services:
     ezpublish.cache_pool:
         class: eZ\Publish\Core\Persistence\Cache\Adapter\InMemoryClearingProxyAdapter
         arguments: ["@ezpublish.cache_pool.inner", "@ezpublish.spi.persistence.cache.inmemory"]
+        public: true # @todo should be private
 
     ezpublish.cache_pool.inner:
         public: false

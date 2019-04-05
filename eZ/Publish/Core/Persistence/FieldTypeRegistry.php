@@ -44,6 +44,7 @@ class FieldTypeRegistry
      */
     public function __construct(array $fieldTypeMap)
     {
+        echo "BUILDING " . self::class . "\n\n";
         $this->coreFieldTypeMap = $fieldTypeMap;
     }
 

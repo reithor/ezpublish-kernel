@@ -10,6 +10,7 @@
  */
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\DynamicSettingParser;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
@@ -44,7 +45,6 @@ $loader->load('storage_engines/common.yml');
 $loader->load('storage_engines/cache.yml');
 $loader->load('storage_engines/legacy.yml');
 $loader->load('storage_engines/shortcuts.yml');
-$loader->load('search_engines/common.yml');
 $loader->load('settings.yml');
 $loader->load('utils.yml');
 $loader->load('tests/common.yml');
@@ -85,41 +85,10 @@ $containerBuilder->addCompilerPass(new Compiler\Search\Legacy\CriterionFieldValu
 $containerBuilder->addCompilerPass(new Compiler\Search\Legacy\SortClauseConverterPass());
 
 //
-// This block overrides all services to be public.
-// It is a workaround to the change in Symfony 4 which makes all services private by default.
-// Our integration tests are not prepared for this as they get services directly from the Container.
+// Symfony 4 makes services private by default. Test cases are not prepared for this.
+// This is a simple workaround to override services as public.
 //
-// Inspired by \Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\TestServiceContainerWeakRefPass
-//
-$definitions = $containerBuilder->getDefinitions();
-foreach ($definitions as $id => $definition) {
-    if (
-        $id && '.' !== $id[0]
-        && (!$definition->isPublic() || $definition->isPrivate())
-        && !$definition->getErrors()
-        && !$definition->isAbstract()
-    ) {
-        $definition->setPrivate(false);
-        $definition->setPublic(true);
-    }
-}
-
-$aliases = $containerBuilder->getAliases();
-foreach ($aliases as $id => $alias) {
-    if ($id && '.' !== $id[0] && (!$alias->isPublic() || $alias->isPrivate())) {
-        while (isset($aliases[$target = (string) $alias])) {
-            $alias = $aliases[$target];
-        }
-        if (
-            isset($definitions[$target])
-            && !$definitions[$target]->getErrors()
-            && !$definitions[$target]->isAbstract()
-        ) {
-
-            $definition->setPrivate(false);
-            $definition->setPublic(true);
-        }
-    }
-}
+$containerBuilder->addCompilerPass(new Compiler\SetAllServicesPublicPass());
+$containerBuilder->addCompilerPass(new Compiler\ReplaceServiceContainerPass());
 
 return $containerBuilder;
