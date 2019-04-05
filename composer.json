@@ -8,8 +8,8 @@
     },
     "repositories": [
         {
-            "type": "path",
-            "url": "../doctrine-dbal-schema"
+            "type": "vcs",
+            "url": "https://github.com/ezsystems/doctrine-dbal-schema.git"
         }
     ],
     "require": {
@@ -35,7 +35,7 @@
         "symfony/http-kernel": "^4.2",
         "symfony/console": "^4.2",
         "symfony/expression-language": "^4.2",
-        "ezsystems/doctrine-dbal-schema": "^0.1@dev",
+        "ezsystems/doctrine-dbal-schema": "dev-symfony4 as v0.1.0",
         "symfony-cmf/routing": "^2.1",
         "kriswallsmith/buzz": "^0.17.2",
         "nelmio/cors-bundle": "^1.5.0",
