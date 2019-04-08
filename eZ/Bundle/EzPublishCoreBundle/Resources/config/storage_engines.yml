@@ -5,6 +5,7 @@ parameters:
 
 services:
     ezpublish.api.repository_configuration_provider:
+        public: true # @todo should be private
         class: "%ezpublish.api.repository_configuration_provider.class%"
         arguments:
             - "@ezpublish.config.resolver"

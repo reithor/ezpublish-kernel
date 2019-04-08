@@ -68,10 +68,11 @@ class SiteAccessMatchListener implements EventSubscriberInterface
     {
         $request = $event->getRequest();
 
+        // @todo move to httpcache bundle
         // Don't try to match when it's a user hash request. SiteAccess is irrelevant in this case.
-        if ($this->userContextRequestMatcher->matches($request) && !$request->attributes->has('_ez_original_request')) {
-            return;
-        }
+//        if ($this->userContextRequestMatcher->matches($request) && !$request->attributes->has('_ez_original_request')) {
+//            return;
+//        }
 
         // We have a serialized siteaccess object from a fragment (sub-request), we need to get it back.
         if ($request->attributes->has('serialized_siteaccess')) {

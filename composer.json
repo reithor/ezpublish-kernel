@@ -53,6 +53,7 @@
         "sensio/framework-extra-bundle": "^5.2",
         "jms/translation-bundle": "^1.4",
         "twig/twig": "^2.5",
+        "twig/extensions": "^1.5.4",
         "friendsofsymfony/http-cache-bundle": "^2.5.1",
         "friendsofsymfony/jsrouting-bundle": "^2.3.0"
     },
