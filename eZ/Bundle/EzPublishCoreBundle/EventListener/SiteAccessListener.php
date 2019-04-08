@@ -11,6 +11,7 @@ namespace eZ\Bundle\EzPublishCoreBundle\EventListener;
 use eZ\Publish\Core\MVC\Symfony\MVCEvents;
 use eZ\Publish\Core\MVC\Symfony\Event\PostSiteAccessMatchEvent;
 use eZ\Publish\Core\MVC\Symfony\Routing\Generator\UrlAliasGenerator;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess\URILexer;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -21,10 +22,8 @@ use Symfony\Component\Security\Http\HttpUtils;
 /**
  * SiteAccess match listener.
  */
-class SiteAccessListener implements EventSubscriberInterface, ContainerAwareInterface
+class SiteAccessListener implements EventSubscriberInterface
 {
-    use ContainerAwareTrait;
-
     /**
      * @var \Symfony\Component\Routing\RouterInterface
      */
@@ -40,11 +39,21 @@ class SiteAccessListener implements EventSubscriberInterface, ContainerAwareInte
      */
     private $httpUtils;
 
-    public function __construct(RouterInterface $defaultRouter, UrlAliasGenerator $urlAliasGenerator, HttpUtils $httpUtils)
-    {
+    /**
+     * @var \eZ\Publish\Core\MVC\Symfony\SiteAccess
+     */
+    private $siteaccess;
+
+    public function __construct(
+        RouterInterface $defaultRouter,
+        UrlAliasGenerator $urlAliasGenerator,
+        HttpUtils $httpUtils,
+        SiteAccess $siteaccess
+    ) {
         $this->defaultRouter = $defaultRouter;
         $this->urlAliasGenerator = $urlAliasGenerator;
         $this->httpUtils = $httpUtils;
+        $this->siteaccess = $siteaccess;
     }
 
     public static function getSubscribedEvents()
@@ -59,7 +68,7 @@ class SiteAccessListener implements EventSubscriberInterface, ContainerAwareInte
         $request = $event->getRequest();
         $matchedSiteAccess = $event->getSiteAccess();
 
-        $siteAccess = $this->container->get('ezpublish.siteaccess');
+        $siteAccess = $this->siteaccess;
         $siteAccess->name = $matchedSiteAccess->name;
         $siteAccess->matchingType = $matchedSiteAccess->matchingType;
         $siteAccess->matcher = $matchedSiteAccess->matcher;

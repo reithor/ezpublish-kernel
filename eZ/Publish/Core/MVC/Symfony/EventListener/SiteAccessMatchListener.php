@@ -46,7 +46,7 @@ class SiteAccessMatchListener implements EventSubscriberInterface
     public function __construct(
         SiteAccessRouter $siteAccessRouter,
         EventDispatcherInterface $eventDispatcher,
-        RequestMatcherInterface $userContextRequestMatcher
+        ?RequestMatcherInterface $userContextRequestMatcher = null // @todo should be moved to httpcache bundle
     ) {
         $this->siteAccessRouter = $siteAccessRouter;
         $this->eventDispatcher = $eventDispatcher;

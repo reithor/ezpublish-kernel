@@ -8,11 +8,7 @@
     },
     "repositories": [
         {
-            "type": "path",
-            "url": "/Users/maciejkobus/Projects/ezplatform-http-cache"
-        },
-        {
-            "type": "path",
+            "type": "vcs",
             "url": "/Users/maciejkobus/Projects/doctrine-dbal-schema"
         }
     ],
@@ -54,7 +50,6 @@
         "jms/translation-bundle": "^1.4",
         "twig/twig": "^2.5",
         "twig/extensions": "^1.5.4",
-        "friendsofsymfony/http-cache-bundle": "^2.5.1",
         "friendsofsymfony/jsrouting-bundle": "^2.3.0"
     },
     "require-dev": {
