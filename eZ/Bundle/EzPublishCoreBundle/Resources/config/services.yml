@@ -267,13 +267,17 @@ services:
 
     ezplatform.core.command.copy_subtree:
         class: eZ\Bundle\EzPublishCoreBundle\Command\CopySubtreeCommand
-        autowire: true
-        autoconfigure: true
+        arguments:
+            $locationService: '@ezpublish.api.service.location'
+            $permissionResolver: "@=service('ezpublish.api.repository').getPermissionResolver()"
+            $userService: '@ezpublish.api.service.user'
+            $contentTypeService: '@ezpublish.api.service.content_type'
+            $searchService: '@ezpublish.api.service.search'
 
     ezplatform.core.command.resize_original_images:
         class: eZ\Bundle\EzPublishCoreBundle\Command\ResizeOriginalImagesCommand
-        autowire: true
-        autoconfigure: true
         arguments:
             $ioService: '@ezpublish.fieldType.ezimage.io_service.published'
             $imagine: '@liip_imagine'
+            $permissionResolver: "@=service('ezpublish.api.repository').getPermissionResolver()"
+            $userService: '@ezpublish.api.service.user'

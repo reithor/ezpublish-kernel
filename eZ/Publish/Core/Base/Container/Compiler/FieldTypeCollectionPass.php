@@ -42,8 +42,6 @@ class FieldTypeCollectionPass implements CompilerPassInterface
 
                 $def = $container->getDefinition($id);
 
-                echo $id . " isPublic: ".  ( $def->isPublic() ? 'true' : 'false' ) ." isPrivate: " . ( $def->isPrivate() ? 'true' : 'false') . "\n\n";
-
                 $fieldTypeCollectionFactoryDef->addMethodCall(
                     'registerFieldType',
                     array(

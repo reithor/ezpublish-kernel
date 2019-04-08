@@ -8,6 +8,7 @@ namespace eZ\Bundle\EzPublishCoreBundle\Routing\JsRouting;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess;
 use FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Route;
 
 /**
  * Decorator of FOSJsRouting routes extractor.
@@ -82,5 +83,15 @@ class ExposedRoutesExtractor implements ExposedRoutesExtractorInterface
     public function getExposedRoutes()
     {
         return $this->innerExtractor->getExposedRoutes();
+    }
+
+    public function getPort()
+    {
+        return $this->innerExtractor->getPort();
+    }
+
+    public function isRouteExposed(Route $route, $name)
+    {
+        return $this->innerExtractor->isRouteExposed($route, $name);
     }
 }
