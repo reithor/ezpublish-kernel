@@ -36,7 +36,7 @@
         "symfony/http-kernel": "^4.2",
         "symfony/console": "^4.2",
         "symfony/expression-language": "^4.2",
-        "ezsystems/doctrine-dbal-schema": "dev-symfony4 as 1.0.0",
+        "ezsystems/doctrine-dbal-schema": "^1.0",
         "symfony-cmf/routing": "^2.1",
         "kriswallsmith/buzz": "^0.17.2",
         "nelmio/cors-bundle": "^1.5.0",
@@ -99,7 +99,8 @@
         "_ezplatform_branch_for_behat_tests_comment_": "ezplatform branch to use to run Behat tests",
         "_ezplatform_branch_for_behat_tests": "master",
         "branch-alias": {
-            "dev-master": "8.0.x-dev",
+            "dev-master": "7.5.x-dev",
+            "dev-symfony4": "8.0.0",
             "dev-tmp_ci_branch": "7.5.x-dev"
         },
         "thanks": {
