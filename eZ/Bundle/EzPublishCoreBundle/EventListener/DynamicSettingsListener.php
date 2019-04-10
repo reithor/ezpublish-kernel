@@ -87,7 +87,7 @@ class DynamicSettingsListener implements EventSubscriberInterface
                 continue;
             }
 
-            $this->container->set($serviceId, null);
+//            $this->container->set($serviceId, null);
         }
 
         // Update services that can be updated.

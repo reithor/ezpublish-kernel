@@ -8,8 +8,11 @@
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "/Users/maciejkobus/Projects/doctrine-dbal-schema"
+            "type": "path",
+            "url": "../doctrine-dbal-schema",
+            "options": {
+                "symlink": true
+            }
         }
     ],
     "require": {
