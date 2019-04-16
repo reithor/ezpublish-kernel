@@ -130,6 +130,8 @@ services:
 
     ezpublish_rest.controller.base:
         class: "%ezpublish_rest.controller.base.class%"
+        tags:
+            - { name: controller.service_arguments }
         calls:
             - [ setContainer, ["@service_container"] ]
             - [ setInputDispatcher, ["@ezpublish_rest.input.dispatcher"] ]
