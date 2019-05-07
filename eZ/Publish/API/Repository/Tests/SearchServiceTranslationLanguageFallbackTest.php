@@ -635,7 +635,7 @@ class SearchServiceTranslationLanguageFallbackTest extends BaseTest
                         array(
                             self::SETUP_DEDICATED => 'localhost:8983/solr/core2',
                             self::SETUP_SHARED => 'localhost:8983/solr/core2',
-                            self::SETUP_SINGLE => 'http://localhost:8985/solr/ezplatform_shard2_replica1/',
+                            self::SETUP_SINGLE => 'localhost:8983/solr/collection1',
                             self::SETUP_CLOUD => 'http://localhost:8985/solr/ezplatform_shard2_replica1/',
                         ),
                     ),
