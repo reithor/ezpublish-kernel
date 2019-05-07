@@ -27,10 +27,10 @@ use RuntimeException;
  */
 class SearchServiceTranslationLanguageFallbackTest extends BaseTest
 {
-    private const SETUP_DEDICATED = 'dedicated';
-    private const SETUP_SHARED = 'shared';
-    private const SETUP_SINGLE = 'single';
-    private const SETUP_CLOUD = 'cloud';
+    const SETUP_DEDICATED = 'dedicated';
+    const SETUP_SHARED = 'shared';
+    const SETUP_SINGLE = 'single';
+    const SETUP_CLOUD = 'cloud';
 
     public function setUp()
     {
