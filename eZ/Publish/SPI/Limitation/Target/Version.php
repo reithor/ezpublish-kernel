@@ -15,7 +15,7 @@ use eZ\Publish\SPI\Persistence\ValueObject;
  * Version Limitation target. Indicates an intent to create new Version.
  *
  * @property-read string[] $allLanguageCodesList
- * @property-read int[] $allContentTypeIdsList
+ * @property-read string[] $allContentTypeIdsList
  * @property-read int $newStatus
  * @property-read string $forUpdateInitialLanguageCode
  * @property-read string[] $forUpdateLanguageCodesList
