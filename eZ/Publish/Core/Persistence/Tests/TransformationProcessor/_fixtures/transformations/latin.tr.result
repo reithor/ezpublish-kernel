@@ -1177,6 +1177,34 @@ return array (
         'dest' => '"z"',
       ),
     ),
+    119 => array (
+      'type' => 11,
+      'data' => array (
+        'src' => 'U+021A',
+        'dest' => '"T"',
+      ),
+    ),
+    120 => array (
+      'type' => 11,
+      'data' => array (
+        'src' => 'U+021B',
+        'dest' => '"t"',
+      ),
+    ),
+    121 => array (
+      'type' => 11,
+      'data' => array (
+        'src' => 'U+0219',
+        'dest' => '"s"',
+      ),
+    ),
+    122 => array (
+      'type' => 11,
+      'data' => array (
+        'src' => 'U+0218',
+        'dest' => '"S"',
+      ),
+    ),
   ),
   'latin1_transliterate_ascii' => array (
     0 => array (
